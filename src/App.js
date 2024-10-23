@@ -5,7 +5,7 @@ import ProductPage from "./components/ProductPage.js";
 
 function App() {
   return (
-    <div className="App font-beatrice bg-gray-100">
+    <div className="App font-beatrice h-screen bg-gray-100">
       <Topbar />
       <ProductPage />
     </div>

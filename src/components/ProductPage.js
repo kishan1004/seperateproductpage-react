@@ -19,43 +19,38 @@ const ProductPage = () => {
   ];
   const sizes = ["XS", "S", "M", "L", "XL", "2X"];
 
+  const imagesgrid = [
+    Mainproductimg,
+    Slide2img,
+    Slide3img,
+    Slide4img,
+    Slide5img,
+  ];
+  const [selectedImage, setSelectedImage] = useState(0);
+
   return (
     <div className="md:flex items-center justify-center lg:px-32 p-4 pt-10 bg-gray-100">
       <div className="grid grid-cols-5 gap-4 max-w-4xl md:w-1/2 max-h-[600px] md:p-4 pb-4">
         <div className="col-span-4">
           <img
-            src={Mainproductimg}
+            src={imagesgrid[selectedImage]}
             alt="Main Product"
             className="w-full h-[560px] object-cover"
           />
         </div>
 
         <div className="flex flex-col space-y-4">
-          <img
-            src={Mainproductimg}
-            alt="Thumbnail 1"
-            className="w-full h-[100px] object-cover border border-gray-200"
-          />
-          <img
-            src={Slide2img}
-            alt="Thumbnail 2"
-            className="w-full h-[100px] object-cover border border-gray-200 opacity-50"
-          />
-          <img
-            src={Slide3img}
-            alt="Thumbnail 3"
-            className="w-full h-[100px] object-cover border border-gray-200 opacity-50"
-          />
-          <img
-            src={Slide4img}
-            alt="Thumbnail 4"
-            className="w-full h-[100px] object-cover border border-gray-200 opacity-50"
-          />
-          <img
-            src={Slide5img}
-            alt="Thumbnail 5"
-            className="w-full h-[100px] object-cover border border-gray-200 opacity-50"
-          />
+          {imagesgrid.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Thumbnail ${index + 1}`}
+              className={`w-full h-[100px] object-cover border border-gray-200 cursor-pointer ${
+                selectedImage === index ? "opacity-100" : "opacity-50"
+              }`}
+              onClick={() => setSelectedImage(index)} // Set selected image on click
+            />
+          ))}
         </div>
       </div>
 
