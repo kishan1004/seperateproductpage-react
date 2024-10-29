@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Topbar = () => {
+const Topbar = ({ cartCount }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -95,10 +95,12 @@ const Topbar = () => {
           </svg>
         </button>
         <div className="flex">
-          <button className="bg-black text-white px-4 md:px-5 py-2 rounded-full hover:text-gray-400 font-medium text-sm hidden lg:block">
-            Cart
-          </button>
-          <button>
+          <a href="https://boisterous-beignet-c0e7ed.netlify.app/">
+            <button className="bg-black text-white px-4 md:px-5 py-4 items-center rounded-full hover:text-gray-400 font-medium text-sm hidden lg:block">
+              Cart
+            </button>
+          </a>
+          <button className="relative">
             <svg
               width="51"
               height="50"
@@ -120,6 +122,11 @@ const Topbar = () => {
                 strokeLinecap="round"
               />
             </svg>
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
 
