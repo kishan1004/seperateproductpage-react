@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Logo from "../images/starringblack.png";
+import { Link } from "react-router-dom";
 
 const Topbar = ({ cartCount }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,35 +11,35 @@ const Topbar = ({ cartCount }) => {
 
   return (
     <header className="p-4 lg:p-10 flex justify-between items-center bg-gray-100">
+      <button onClick={toggleMenu} className="md:hidden">
+        <svg
+          width="28"
+          height="18"
+          viewBox="0 0 28 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M27 1L1 1"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M19 9L1 9"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M14 17H1"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </button>
       <div className="flex items-center space-x-4 md:space-x-8">
-        <button onClick={toggleMenu}>
-          <svg
-            width="28"
-            height="18"
-            viewBox="0 0 28 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M27 1L1 1"
-              stroke="black"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M19 9L1 9"
-              stroke="black"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M14 17H1"
-              stroke="black"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
         <nav className="hidden md:flex space-x-4 md:space-x-8 font-medium text-sm">
           <a
             href="https://earnest-marshmallow-59a2b8.netlify.app/"
@@ -54,32 +56,12 @@ const Topbar = ({ cartCount }) => {
         </nav>
       </div>
 
-      <div>
-        <svg
-          width="35"
-          height="35"
-          viewBox="0 0 35 35"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            x="17.5"
-            width="24.7487"
-            height="24.7487"
-            transform="rotate(45 17.5 0)"
-            fill="#D9D9D9"
-          />
-          <path
-            d="M17.75 17.5L17.75 0.603553L34.6464 17.5L17.75 34.3964V17.5Z"
-            fill="black"
-            stroke="#060606"
-            strokeWidth="0.5"
-          />
-        </svg>
+      <div className="max-w-[200px] px-2">
+        <img src={Logo} alt="logoimg" />
       </div>
 
       <div className="flex space-x-4 md:space-x-8 items-center">
-        <button>
+        <Link to="/Favourites">
           <svg
             width="50"
             height="50"
@@ -93,7 +75,8 @@ const Topbar = ({ cartCount }) => {
               fill="white"
             />
           </svg>
-        </button>
+        </Link>
+
         <div className="flex">
           <a href="https://boisterous-beignet-c0e7ed.netlify.app/">
             <button className="bg-black text-white px-4 md:px-5 py-4 items-center rounded-full hover:text-gray-400 font-medium text-sm hidden lg:block">
