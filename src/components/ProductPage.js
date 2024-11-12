@@ -9,6 +9,8 @@ import SimilarProduct2 from "../images/imgproduct4.jpeg";
 import SimilarProduct3 from "../images/imgproduct5.jpeg";
 import SimilarProduct4 from "../images/imgproduct6.jpeg";
 import { Link } from "react-router-dom";
+import FrequentProduct1 from "../images/product1.jpeg";
+import FrequentProduct2 from "../images/product3.jpeg";
 
 const ProductPage = ({ setCartCount, cartCount }) => {
   const [selectedColor, setSelectedColor] = useState("black");
@@ -44,26 +46,26 @@ const ProductPage = ({ setCartCount, cartCount }) => {
   const handleAddToCart = () => {
     setCartCount(cartCount + 1);
   };
-  const [clicked, setClicked] = useState(false);
+  const [isRed, setIsRed] = useState(false);
 
   const handleClick = () => {
-    // Toggle the clicked state when the button is clicked
-    setClicked(!clicked);
+    setIsRed((prev) => !prev); // Toggle between red and white
   };
+
   const similarProducts = [
     {
       id: 1,
       image: SimilarProduct1,
       name: "Similar Product 1",
       originalPrice: 180,
-      offerPrice: 129,
+      offerPrice: 89,
     },
     {
       id: 2,
       image: SimilarProduct2,
       name: "Similar Product 2",
       originalPrice: 200,
-      offerPrice: 149,
+      offerPrice: 99,
     },
     {
       id: 3,
@@ -81,6 +83,23 @@ const ProductPage = ({ setCartCount, cartCount }) => {
     },
   ];
   const starRating = 3.3;
+
+  const frequentlyBoughtProducts = [
+    {
+      id: 1,
+      image: FrequentProduct2,
+      name: "Combo Product 1",
+      originalPrice: 180,
+      offerPrice: 79,
+    },
+    {
+      id: 2,
+      image: FrequentProduct1,
+      name: "Combo Product 2",
+      originalPrice: 200,
+      offerPrice: 99,
+    },
+  ];
 
   return (
     <>
@@ -110,21 +129,28 @@ const ProductPage = ({ setCartCount, cartCount }) => {
         </div>
 
         <div className="lg:max-w-[380px] md:w-1/2 px-10 border-2 relative">
-          <button className="absolute right-0 p-0" onClick={handleClick}>
+          <button
+            className="absolute top-0 right-0"
+            onClick={handleClick}
+            style={{
+              backgroundColor: isRed ? "white" : "white",
+              border: "none",
+
+              padding: "10px",
+              cursor: "pointer",
+            }}
+          >
             <svg
-              width="34"
-              height="34"
-              viewBox="0 0 34 34"
-              fill="none"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill={isRed ? "red" : "white"} // Icon color
+              stroke="black" // Outline color
+              strokeWidth="1" // Thickness of the outline
               xmlns="http://www.w3.org/2000/svg"
+              style={{ transform: "rotate(-40deg)" }}
             >
-              <g opacity="0.66">
-                <rect width="34" height="34" fill="white" fillOpacity="0.88" />
-                <path
-                  d="M19.2792 20.4917L19.2577 20.1424L19.2792 20.4917ZM16.1681 14.8814L16.1417 15.2304C16.2366 15.2376 16.3303 15.2058 16.4013 15.1425C16.4722 15.0791 16.5143 14.9895 16.5178 14.8944L16.1681 14.8814ZM21.3934 18.603L21.7382 18.6636L21.3934 18.603ZM19.2577 20.1424C18.3589 20.1978 17.4196 20.3069 16.502 20.2005C15.6023 20.0961 14.763 19.7863 14.08 19.0218L13.558 19.4881C14.3865 20.4156 15.405 20.7779 16.4213 20.8958C17.4197 21.0117 18.4548 20.8932 19.3007 20.8411L19.2577 20.1424ZM14.08 19.0218C13.4115 18.2734 13.2737 17.2681 13.6152 16.4886C13.947 15.7314 14.7611 15.1262 16.1417 15.2304L16.1944 14.5324C14.5562 14.4087 13.44 15.1442 12.9741 16.2077C12.5179 17.249 12.715 18.5445 13.558 19.4881L14.08 19.0218ZM19.3007 20.8411C19.6045 20.8224 19.9296 20.8013 20.2248 20.7414C20.5197 20.6815 20.8232 20.5759 21.0634 20.3613L20.5971 19.8393C20.4894 19.9355 20.3251 20.0067 20.0855 20.0553C19.846 20.104 19.5696 20.1232 19.2577 20.1424L19.3007 20.8411ZM21.7382 18.6636C21.885 17.8289 22.1189 16.8137 22.116 15.8086C22.113 14.7854 21.8673 13.7327 21.0388 12.8053L20.5168 13.2716C21.1997 14.0362 21.4133 14.905 21.416 15.8107C21.4187 16.7344 21.2047 17.6555 21.0487 18.5424L21.7382 18.6636ZM21.0388 12.8053C20.1958 11.8616 18.9307 11.5203 17.8447 11.8566C16.7356 12.2002 15.8794 13.2267 15.8183 14.8684L16.5178 14.8944C16.5693 13.5109 17.2621 12.7699 18.0519 12.5253C18.8648 12.2735 19.8482 12.5233 20.5168 13.2716L21.0388 12.8053ZM21.0487 18.5424C20.9946 18.8502 20.9445 19.1226 20.8693 19.3552C20.794 19.5878 20.7048 19.7431 20.5971 19.8393L21.0634 20.3613C21.3037 20.1467 21.4426 19.857 21.5353 19.5706C21.628 19.2841 21.6854 18.9633 21.7382 18.6636L21.0487 18.5424Z"
-                  fill={clicked ? "#DC143C" : "#1E1E1E"} // Change color to red if clicked
-                />
-              </g>
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
           </button>
           <h2 className="md:text-2xl text-xl font-semibold pt-10">
@@ -223,6 +249,56 @@ const ProductPage = ({ setCartCount, cartCount }) => {
           </button>
         </div>
       </div>
+      {/* frequently bought together */}
+      <div>
+        <div className="md:p-10 p-3 pb-10">
+          <h3 className="text-lg font-semibold mb-4">
+            Frequently Bought Together
+          </h3>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 ">
+            {frequentlyBoughtProducts.map((product) => {
+              const offerPercentage = Math.round(
+                ((product.originalPrice - product.offerPrice) /
+                  product.originalPrice) *
+                  100
+              );
+              return (
+                <Link to="/" className="block">
+                  <div
+                    key={product.id}
+                    className="border p-4 rounded-lg shadow-md relative"
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-40 object-cover mb-4"
+                    />
+                    <h4 className="text-sm font-medium">{product.name}</h4>
+                    <div className="flex items-center space-x-2 mt-2">
+                      <p className="text-xs line-through text-gray-500">
+                        Rs.{product.originalPrice}
+                      </p>
+                      <p className="md:text-lg text-sm font-medium">
+                        Rs.{product.offerPrice}
+                      </p>
+                      <p className="text-yellow-600 text-xs md:font-medium font-normal">
+                        {offerPercentage}% OFF
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+            <button
+              onClick={handleAddToCart}
+              className="bg-[#D9D9D9] text-black w-full py-3 mb-5 h-14 rounded col-span-2 place-self-center md:col-span-1 hover:bg-black hover:text-white "
+            >
+              BUY ALL
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* products you may like */}
 
       <div>
@@ -251,10 +327,10 @@ const ProductPage = ({ setCartCount, cartCount }) => {
                       <p className="text-xs line-through text-gray-500">
                         Rs.{product.originalPrice}
                       </p>
-                      <p className="text-lg font-medium">
+                      <p className="md:text-lg text-sm font-medium">
                         Rs.{product.offerPrice}
                       </p>
-                      <p className="text-yellow-600 text-xs font-medium">
+                      <p className="text-yellow-600 text-xs md:font-medium font-normal">
                         {offerPercentage}% OFF
                       </p>
                     </div>

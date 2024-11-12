@@ -111,14 +111,14 @@ const Favourites = () => {
                     className="w-full h-40 object-cover mb-4"
                   />
                   <h4 className="text-sm font-medium">{product.name}</h4>
-                  <div className="flex items-center space-x-2 mt-2">
+                  <div className="flex items-center md:space-x-2 space-x-1 mt-2">
                     <p className="text-xs line-through text-gray-500">
                       Rs.{product.originalPrice}
                     </p>
-                    <p className="text-lg font-medium">
+                    <p className="text-sm md:text-lg font-light">
                       Rs.{product.offerPrice}
                     </p>
-                    <p className="text-yellow-600 text-xs font-medium">
+                    <p className="text-yellow-600 text-xs md:font-medium font-light">
                       {offerPercentage}% OFF
                     </p>
                   </div>
